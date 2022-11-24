@@ -1,0 +1,19 @@
+<%- include("partials/header"); -%> 
+
+<body>
+        <div class="row h-50">
+            <% for (let k=0; k<allmatrices.length; k++){ %>
+            <table class="center col-2" style="margin-left: 0; margin-right:0; margin-top: 5px;">
+                <% for (let i=0; i<4; i++){ %>
+                    <tr>
+                    <% for (let j=0;j<4;j++){%>
+                    <td>
+                        <%=allmatrices[k][i+4*j]%>
+                    <% } %> 
+                    </td>
+                    <% } %> 
+            </table>
+            <div class="arrow-1"></div>
+            <% } %> 
+        </div>
+</body>

@@ -1,0 +1,34 @@
+<%- include("partials/header"); -%> 
+
+<body>
+    <h1 class="heading">AES Visualizer</h1>
+
+    <h2>Key Expansion</h2>
+
+    <form class="input-form" action="/keyexpansioninput" method="post">
+        <label class="input-text">Enter your key  (in hex)  :</label>
+        <input class="input-box" type="text" placeholder="Your 128 bit Hex Key" name="key">
+        <br>
+        <p class="error-message"><%=error_key%></p>
+        <button type="submit" class="start-button btn btn-outline-dark">Make Key Matrix</button>
+    </form>
+
+    <div class="row h-50">
+        <table class="center col-2">
+            <caption class="caption-text">Key Matrix</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                <% for (let j=0;j<4;j++){%>
+                <td>
+                    <%=in_values[i+4*j]%>
+                <% } %> 
+                </td>
+                <% } %> 
+        </table>
+    </div>
+
+    <form action="/viewKeyExpansion" method="post">
+        <button class="next-btn btn btn-outline-dark">Move to Key Expansion</button>
+    </form>
+
+</body>

@@ -1,0 +1,105 @@
+<%- include("partials/header"); -%> 
+
+<body>
+    <h2>Key Expansion</h2>
+
+    <div class="row h-50">
+        <table class="center col-1 right-table" style="margin-right: 0; margin-left: 15px;">
+            <caption class="caption-text">Last Column</caption>
+            <% for (let i=12; i<16; i++){ %>
+                <tr>
+                    <% if (i==12){ %> 
+                <td style="background-color: grey;">
+                    <%=in_values[i]%>
+                </td>
+                <% } else { %>
+                    <td><%= in_values[i] %> </td> 
+                <% } %> 
+            <% } %> 
+        </table>
+        <div class="arrow-1"></div>
+        <table class="center col-1" style="margin-left: 0; margin-right: 0;">
+            <caption class="caption-text">First Step</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                    <% if (i==3){ %> 
+                <td style="background-color: grey;">
+                    <%=secondCol[i]%>
+                </td>
+                <% } else { %>
+                    <td><%= secondCol[i] %> </td> 
+                <% } %> 
+            <% } %> 
+        </table> 
+        <div class="arrow-1"></div>
+        <table class="center col-1" style="margin-left: 0; margin-right: 0;">
+            <caption class="caption-text">Substitution</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                    <td><%= substitution[i] %> </td> 
+                </tr>
+            <% } %> 
+        </table> 
+        <b style="width: 100px; padding-top: 75px;">⊕</b>
+        <table class="center col-1" style="margin-left: 0; margin-right: 0;">
+            <caption class="caption-text">RoundConstant</caption>
+            <tr><td>01</td></tr>
+            <tr><td>00</td></tr>
+            <tr><td>00</td></tr>
+            <tr><td>00</td></tr>
+        </table>
+        <div class="arrow-1"></div>
+        <table class="center col-1" style="margin-left: 0; margin-right: 0;">
+            <caption class="caption-text">After XOR</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                    <td><%= xorVal[i] %> </td> 
+                </tr>
+            <% } %> 
+        </table> 
+        <b style="width: 100px; padding-top: 75px;">⊕</b>
+        <table class="center col-1" style="margin-left: 0; margin-right: 0;">
+            <caption class="caption-text">Old First Col</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                    <td><%= in_values[i] %> </td> 
+                </tr>
+            <% } %> 
+        </table> 
+        <div class="arrow-1"></div>
+        <table class="center col-1" style="margin-left: 0; margin-right: 0;">
+            <caption class="caption-text">New First Col</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                    <td><%= newCol[i] %> </td> 
+                </tr>
+            <% } %> 
+        </table> 
+    </div> <br>
+    <p>To get the next columns, the new first column is XORed with the old second column to get the new second column, the new second column is XORed with the old third column and so on. </p>
+    <div class="row h-50">
+        <table class="center col-2" style="margin-right:0 ;">
+            <caption class="caption-text">Initial Key</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                <% for (let j=0;j<4;j++){%>
+                <td>
+                    <%=in_values[i+4*j]%>
+                <% } %> 
+                </td>
+                <% } %> 
+        </table>
+        <div class="arrow-1"></div>
+        <table class="center col-2" style="margin-left:0 ;">
+            <caption class="caption-text">New Key</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                <% for (let j=0;j<4;j++){%>
+                <td>
+                    <%=finalans[j][i]%>
+                <% } %> 
+                </td>
+                <% } %> 
+        </table>
+    </div>
+</body>

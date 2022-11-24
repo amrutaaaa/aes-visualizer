@@ -1,0 +1,83 @@
+<%- include("partials/header"); -%> 
+
+<body class="container-fluid">
+    <h1 class="heading">AES Visualizer</h1>
+    <h3><%= heading %> </h3>
+    <p class="col-6 mx-auto"><%- description_text -%> </p>
+    <br> <br>
+    <div class="row h-50">
+        <table class="center col-2">
+            <caption class="caption-text">Input Matrix</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                <% for (let j=0;j<4;j++){%>
+                    <% if (flag==0){%> 
+                        <td>
+                            <%=in_values[i+4*j]%>
+                        </td>
+                    <% }else{ %> 
+                        <% if (i+4*j==1){ %>
+                            <td style="background-color: #7FE9DE; color: black;">
+                                <b><%=in_values[i+4*j]%></b>
+                            </td>
+                        <% } else if (i+4*j==2||i+4*j==6){ %> 
+                            <td style="background-color: #A4BE7B; color: black;">
+                                <b><%=in_values[i+4*j]%></b>
+                            </td>
+                        <% } else if (i+4*j==3||i+4*j==7||i+4*j==11){ %> 
+                            <td style="background-color: #DEBACE; color: black;">
+                                <b><%=in_values[i+4*j]%></b>
+                            </td>
+                        <% } else { %> 
+                            <td>
+                                <%=in_values[i+4*j]%>
+                            </td>
+                        <% } %> 
+                    <% } %> 
+                <% } %> 
+                </td>
+                <% } %> 
+        </table>
+        <table class="center col-2">
+            <caption class="caption-text">Result After <%= operation %> </caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                <% for (let j=0;j<4;j++){%>
+                    <% if (flag==0){%> 
+                        <td>
+                            <%=res_values[i+4*j]%>
+                        </td>
+                    <% }else{ %> 
+                        <% if (i+4*j==13){ %>
+                            <td style="background-color: #7FE9DE; color: black;">
+                                <b><%=res_values[i+4*j]%></b>
+                            </td>
+                        <% } else if (i+4*j==10||i+4*j==14){ %> 
+                            <td style="background-color: #A4BE7B; color: black;">
+                                <b><%=res_values[i+4*j]%></b>
+                            </td>
+                        <% } else if (i+4*j==15||i+4*j==7||i+4*j==11){ %> 
+                            <td style="background-color: #DEBACE; color: black;">
+                                <b><%=res_values[i+4*j]%></b>
+                            </td>
+                        <% } else { %> 
+                            <td>
+                                <%=res_values[i+4*j]%>
+                            </td>
+                        <% } %> 
+                    <% } %> 
+                <% } %> 
+                </td>
+                <% } %>  
+        </table>
+    </div>
+    <br>
+    <% if (nextOp!=""){ %> 
+    <form action="/<%= operation %> " method="post">
+        <button class="start-button btn btn-outline-dark btn-lg">Perform <%= operation %> </button>
+    </form>
+    <form action="<%= nextOp %> " method="post">
+        <button class="next-btn btn btn-outline-dark">Move to <%= nextOp %>  Step</button>
+    </form>
+    <% } %> 
+</body>

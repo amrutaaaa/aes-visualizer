@@ -1,0 +1,58 @@
+<%- include("partials/header"); -%> 
+
+<body>
+    <h1 class="heading">AES Visualizer</h1>
+    <h3>Round Key Addition</h3>
+    <p class="col-6 mx-auto">In this step, <b>round key is XORed with the matrix from the previous round</b>. If it is the first round, then the input matrix itself is XORed.</p>
+    <br>
+    <div class="row h-50">
+        <table class="center col-2 left-table">
+            <caption class="caption-text">Input Matrix</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                <% for (let j=0;j<4;j++){%>
+                <td>
+                    <%=in_values[i+4*j]%>
+                <% } %> 
+                </td>
+                <% } %> 
+        </table>
+        <table class="center col-2 right-table left-table">
+            <caption class="col caption-text"> Key Matrix</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                <% for (let j=0;j<4;j++){%>
+                <td>
+                    <%=key_values[i+4*j]%>
+                <% } %> 
+                </td>
+                <% } %> 
+        </table>
+        <table class="center col-2 right-table">
+            <caption class="col caption-text">Result</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                <% for (let j=0;j<4;j++){%>
+                <td>
+                    <%=xor_result[i+4*j]%>
+                <% } %> 
+                </td>
+                <% } %> 
+        </table>
+    </div>
+    <br>
+    <form action="/roundkeyaddition" method="post">
+        <button class="start-button btn btn-outline-dark btn-lg">Calculate</button>
+    </form>
+    <form action="/" method="post">
+        <button class="change-inpt next-btn btn btn-outline-dark">Go Back and Change Input</button>
+    </form>
+    <% if (next_op=="Show Result"){%>
+    <form action="/result" method="post">
+    <% } else{ %> 
+    <form action="/subbytes" method="post">
+    <% } %> 
+        <button class="next-btn btn btn-outline-dark"><%= next_op%></button>
+    </form>
+
+</body>

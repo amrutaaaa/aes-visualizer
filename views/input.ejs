@@ -1,0 +1,54 @@
+<%- include("partials/header"); -%> 
+<body>
+    <h1 class="heading" style="padding-top: 10px;">AES Visualizer</h1>
+
+    <p class="col-6 mx-auto">The Advanced Encryption Standard or AES takes an input of <b>128 bits</b> which is divided into 16 groups of 8 bits each and arranged in the form of a matrix. (32 characters)</p>
+
+
+    <form class="input-form" action="/input" method="post">
+        <label class="input-text">Enter your input (in hex) :</label>
+        <input class="input-box" type="text" placeholder="Your 128 bit Hex String" name="inputStr">
+        <p class="error-message"><%=error_input%></p>
+        <br>
+        <label class="input-text">Enter your key  (in hex)  :</label>
+        <input class="input-box" type="text" placeholder="Your 128 bit Hex Key" name="key">
+        <p class="error-message"><%=error_key%></p>
+        <br>
+        <button type="submit" class="start-button btn btn-outline-dark">Make the Matrices</button>
+    </form>
+    <br>
+    <div class="row h-50">
+        <table class="center col-2 left-table">
+            <caption>Input Matrix</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                <% for (let j=0;j<4;j++){%>
+                <td>
+                    <%=in_values[i+4*j]%>
+                <% } %> 
+                </td>
+                <% } %> 
+        </table>
+        <table class="center col-2 right-table">
+            <caption class="col"> Key Matrix</caption>
+            <% for (let i=0; i<4; i++){ %>
+                <tr>
+                <% for (let j=0;j<4;j++){%>
+                <td>
+                    <%=key_values[i+4*j]%>
+                <% } %> 
+                </td>
+                <% } %> 
+        </table>
+    </div>
+    
+    <form action="/roundkey" method="post">
+        <button class="next-btn btn btn-outline-dark">Move to Next Step</button>
+    </form>
+    <form action="/completeEncryption" method="post">
+        <button class="next-btn btn btn-outline-dark" style="left: 1%; right: auto;">Encrypt Completely</button>
+    </form>
+
+    
+</body>
+</html>
