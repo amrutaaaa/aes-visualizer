@@ -229,6 +229,7 @@ function keyExpansionPage(response, key){
 
 app.get("/", function(req, res){
     round = 0;
+    eightBitKey=[];
     res.render("home");
 })
 
